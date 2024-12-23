@@ -45,7 +45,7 @@ export default async function Home() {
               </tr>
             </thead>
             <tbody>
-              {campaigns.map((campaign, idx) => (
+              {campaigns?.map((campaign, idx) => (
                 <tr key={idx}>
                   <td>{idx + 1}</td>
                   <td>{campaign.name}</td>
@@ -56,7 +56,7 @@ export default async function Home() {
                   </td>
                 </tr>
               ))}
-              {!campaigns.length && (
+              {!campaigns?.length && (
                 <tr>
                   <td colSpan={4} className="text-center">
                     No Record Found
