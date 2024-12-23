@@ -1,6 +1,12 @@
 "use client";
-import { FormEvent, useEffect, useState } from "react";
-import Modal from "./Modal";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+// import Modal from "./Modal";
+
+const Modal = dynamic(() => import("./Modal"), {
+  ssr: false,
+});
+
 import { createCampaign } from "@/actions/campaign";
 
 export default function CreateCampaign() {
@@ -41,10 +47,6 @@ export default function CreateCampaign() {
     getUserGroup();
   }, []);
 
-  function handleCreateCampaign(e: FormEvent) {
-    e.preventDefault();
-  }
-
   return (
     <>
       <button onClick={() => setModalOpen(true)}>Add Campaign</button>
@@ -54,8 +56,14 @@ export default function CreateCampaign() {
             <h2 className="font-medium text-xl">Create Campaign</h2>
           </div>
           <form
-            // onSubmit={handleCreateCampaign}
-            action={createCampaign}
+            action={async (formdata) => {
+              const res = await createCampaign(formdata);
+              if (res) {
+                alert("Campaign created successfully");
+              } else {
+                console.error("Something went wrong");
+              }
+            }}
             className="space-y-4"
           >
             <div className="grid grid-cols-2 gap-4">
@@ -84,12 +92,7 @@ export default function CreateCampaign() {
 
               <div className="form-group">
                 <label htmlFor="user-group">User Group</label>
-                <select
-                  name="user-group"
-                  id="user-group"
-                  required
-                  className="form-select"
-                >
+                <select name="user-group" id="user-group" required>
                   <option value="-1" disabled selected>
                     Select group
                   </option>
@@ -112,11 +115,11 @@ export default function CreateCampaign() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="time-campaign">Schedule Time</label>
+                <label htmlFor="time-schedule">Schedule Time</label>
                 <input
                   type="time"
-                  name="time-campaign"
-                  id="time-campaign"
+                  name="time-schedule"
+                  id="time-schedule"
                   required
                 />
               </div>
