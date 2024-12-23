@@ -13,15 +13,25 @@ client and server contains the client and server codes
 
 Steps to run
 
-- pip install -r requirements.txt
-- python app.py
+```python
+pip install -r requirements.txt
+```
+
+```python
+python app.py
+```
 
 ### Client
 
 Steps to run:
 
-- npm install
-- npm run dev
+```js
+npm install
+```
+
+```js
+npm run dev
+```
 
 ## Next.JS Prisma SQLite
 
@@ -31,11 +41,18 @@ It contains both server and client as full using Next.JS app, implemented using 
 
 Steps to run:
 
-- npm install
-- npm run dev
+```js
+npm install
+```
+
+```js
+npm run dev
+```
 
 #### Test Api
 
 ```
+
 http://localhost:3000/api/email-campaign?campaignId={campaignId}
+
 ```
