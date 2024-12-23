@@ -7,17 +7,42 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  thead tr th {
+    @apply px-6 py-3;
+  }
+  tbody {
+    & > tr {
+      @apply bg-white border-b;
+      & > td {
+        @apply px-6 py-4;
+      }
+    }
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .wrapper {
+    @apply max-w-7xl mx-auto;
+  }
+  .form-group {
+    @apply grid grid-cols-1 items-center min-w-[180px];
+
+    & > select {
+      @apply border px-3 py-1.5 rounded-md;
+    }
+    & > input {
+      @apply border px-3 py-1 rounded-md;
+    }
+  }
+
+  button {
+    @apply text-sm font-medium rounded-md border shadow px-3 py-1.5;
+  }
 }
 
 @layer utilities {
