@@ -1,6 +1,20 @@
 import CreateCampaign from "./component/CreateCampaign";
 
-export default function Home() {
+async function getCampaign() {
+  try {
+    const res = await fetch("http://localhost:5000/api/get_campaigns");
+
+    if (res.ok) {
+      const result = await res.json();
+      return result;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+export default async function Home() {
+  const campaigns: Record<string, string>[] = await getCampaign();
+
   return (
     <div>
       <div className="wrapper mb-4">
@@ -30,11 +44,20 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colSpan={4} className="text-center">
-                  No Record Found
-                </td>
-              </tr>
+              {campaigns.map((campaign, idx) => (
+                <tr key={idx}>
+                  <td className="text-center">{idx + 1}</td>
+                  <td className="text-center">{campaign.name}</td>
+                  <td className="text-center">{`${campaign.schedule_date} ${campaign.schedule_time}`}</td>
+                </tr>
+              ))}
+              {!campaigns.length && (
+                <tr>
+                  <td colSpan={4} className="text-center">
+                    No Record Found
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
