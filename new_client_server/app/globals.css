@@ -15,13 +15,11 @@ body {
   thead tr th {
     @apply px-6 py-3;
   }
-  tbody {
-    & > tr {
-      @apply bg-white border-b;
-      & > td {
-        @apply px-6 py-4;
-      }
-    }
+  tbody tr {
+    @apply bg-white border-b;
+  }
+  tbody tr td {
+    @apply px-6 py-4;
   }
 }
 
