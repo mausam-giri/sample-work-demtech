@@ -1,4 +1,4 @@
-import prisma from "@/db";
+import { PrismaClient } from "@prisma/client";
 import { NextResponse, type NextRequest } from "next/server";
 import { promises as fs } from "fs";
 
@@ -15,6 +15,8 @@ type UserGroupData = {
   name: string;
   users: Users[];
 };
+
+const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest) {
   const campaignId = request.nextUrl.searchParams.get("campaignId");
