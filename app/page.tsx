@@ -1,8 +1,10 @@
 import CreateCampaign from "./component/CreateCampaign";
+import DeleteCampaign from "./component/DeleteCampaign";
+import EditCampaign from "./component/EditCampaign";
 
 async function getCampaign() {
   try {
-    const res = await fetch("http://localhost:5000/api/get_campaigns");
+    const res = await fetch("http://localhost:5000/api/get-campaigns");
 
     if (res.ok) {
       const result = await res.json();
@@ -30,7 +32,6 @@ export default async function Home() {
 
       <div className="wrapper space-y-2">
         <div>
-          {/* <button>+ Add Campaign</button> */}
           <CreateCampaign />
         </div>
         <div>
@@ -39,16 +40,20 @@ export default async function Home() {
               <tr>
                 <th>Sl</th>
                 <th>Campaign Name</th>
-                <th>Scheduled Time</th>
+                <th>Scheduled</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {campaigns.map((campaign, idx) => (
                 <tr key={idx}>
-                  <td className="text-center">{idx + 1}</td>
-                  <td className="text-center">{campaign.name}</td>
-                  <td className="text-center">{`${campaign.schedule_date} ${campaign.schedule_time}`}</td>
+                  <td>{idx + 1}</td>
+                  <td>{campaign.name}</td>
+                  <td>{`${campaign.scheduleDate} @ ${campaign.scheduleTime}`}</td>
+                  <td className="space-x-2">
+                    <EditCampaign campaign={campaign} />
+                    <DeleteCampaign campaignId={campaign.id} />
+                  </td>
                 </tr>
               ))}
               {!campaigns.length && (
