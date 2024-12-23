@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
 
   //   Get Template Data
   const templateFile = await fs.readFile(
-    process.cwd() + "/app/data/template.json",
+    process.cwd() + "/data/template.json",
     "utf-8"
   );
   const templates: TemplateData[] = JSON.parse(templateFile);
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
 
   // Get User Data
   const userGroupFile = await fs.readFile(
-    process.cwd() + "/app/data/user_group.json",
+    process.cwd() + "/data/user_group.json",
     "utf-8"
   );
   const userGroups: UserGroupData[] = JSON.parse(userGroupFile);
