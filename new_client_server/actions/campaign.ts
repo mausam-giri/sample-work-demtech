@@ -110,7 +110,7 @@ export async function getAllCampaign() {
 export async function getTemplates() {
   try {
     const file = await fs.readFile(
-      process.cwd() + "/data/template.json",
+      process.cwd() + "/public/data/template.json",
       "utf-8"
     );
     const data = JSON.parse(file);
@@ -124,7 +124,7 @@ export async function getTemplates() {
 export async function getUserGroups() {
   try {
     const file = await fs.readFile(
-      process.cwd() + "/data/user_group.json",
+      process.cwd() + "/public/data/user_group.json",
       "utf-8"
     );
     const data = JSON.parse(file);
