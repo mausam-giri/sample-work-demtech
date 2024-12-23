@@ -1,6 +1,6 @@
 # Mailing Scheduling Feature
 
-## Next.JS and Python - Flask
+## 1. Next.JS and Python - Flask
 
 Sample work for the demtech.ai
 
@@ -33,7 +33,7 @@ npm install
 npm run dev
 ```
 
-## Next.JS Prisma SQLite
+## 2. Next.JS Prisma SQLite
 
 ### new*client_server => \_folder*
 
