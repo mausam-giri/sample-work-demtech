@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse, type NextRequest } from "next/server";
-import { promises as fs } from "fs";
+// import { promises as fs } from "fs";
+import { templates as templatesData } from "@/app/data/template";
+import { user_group } from "@/app/data/user_group";
 
 type TemplateData = {
   id: string;
@@ -33,22 +35,23 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: "Invalid request" }, { status: 404 });
 
   //   Get Template Data
-  const templateFile = await fs.readFile(
-    process.cwd() + "/data/template.json",
-    "utf-8"
-  );
-  const templates: TemplateData[] = JSON.parse(templateFile);
-
+  // const templateFile = await fs.readFile(
+  //   process.cwd() + "/data/template.json",
+  //   "utf-8"
+  // );
+  // const templates: TemplateData[] = JSON.parse(templateFile);
+  const templates: TemplateData[] = templatesData;
   const templateData = templates.filter(
     (template) => template.id === campaignDetails.templateId
   );
 
   // Get User Data
-  const userGroupFile = await fs.readFile(
-    process.cwd() + "/data/user_group.json",
-    "utf-8"
-  );
-  const userGroups: UserGroupData[] = JSON.parse(userGroupFile);
+  // const userGroupFile = await fs.readFile(
+  //   process.cwd() + "/data/user_group.json",
+  //   "utf-8"
+  // );
+  // const userGroups: UserGroupData[] = JSON.parse(userGroupFile);
+  const userGroups: UserGroupData[] = user_group;
   const userGroupData = userGroups.filter(
     (group) => group.id === campaignDetails.userGroupId
   );

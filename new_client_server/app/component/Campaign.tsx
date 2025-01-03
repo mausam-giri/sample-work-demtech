@@ -12,6 +12,7 @@ import {
   getUserGroups,
   updateCampaign,
 } from "@/actions/campaign";
+import { UserGroupData } from "../data/user_group";
 
 interface Props {
   mode: "Add" | "Edit";
@@ -27,7 +28,7 @@ export default function Campaign({
   campaignDetails,
 }: Props) {
   const [template, setTemplate] = useState<Record<string, string>[] | []>();
-  const [userGroup, setUserGroup] = useState<Record<string, string>[] | []>();
+  const [userGroup, setUserGroup] = useState<UserGroupData[]>([]);
 
   async function getMailTemplates() {
     try {

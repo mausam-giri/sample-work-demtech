@@ -3,7 +3,9 @@
 import prisma from "@/db";
 import { revalidatePath } from "next/cache";
 
-import { promises as fs } from "fs";
+// import { promises as fs } from "fs";
+import { templates } from "@/app/data/template";
+import { user_group } from "@/app/data/user_group";
 
 async function isCampaignExist(campaignId: string) {
   const campaign = await prisma.campaign.findFirst({
@@ -109,11 +111,10 @@ export async function getAllCampaign() {
 
 export async function getTemplates() {
   try {
-    const file = await fs.readFile(
-      process.cwd() + "/public/data/template.json",
-      "utf-8"
-    );
-    const data = JSON.parse(file);
+    // const file = await fs.readFile("/data/template.json");
+    // const data = JSON.parse(file);
+    // return data;
+    const data = templates;
     return data;
   } catch (error) {
     console.error("Error while getting template", error);
@@ -123,11 +124,12 @@ export async function getTemplates() {
 
 export async function getUserGroups() {
   try {
-    const file = await fs.readFile(
-      process.cwd() + "/public/data/user_group.json",
-      "utf-8"
-    );
-    const data = JSON.parse(file);
+    // const file = await fs.readFile(
+    //   process.cwd() + "/public/data/user_group.json",
+    //   "utf-8"
+    // );
+    // const data = JSON.parse(file);
+    const data = user_group;
     return data;
   } catch (error) {
     console.error("Error while getting user groups", error);
