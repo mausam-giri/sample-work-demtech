@@ -57,4 +57,4 @@ http://localhost:3000/api/email-campaign?campaignId={campaignId}
 
 ```
 
-[https://sample-work-demtech-26k8m123c-byte2codes-projects.vercel.app/](Deployed URL)
+[https://sample-work-demtech-26k8m123c-byte2codes-projects.vercel.app/]
